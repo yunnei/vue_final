@@ -1,0 +1,17 @@
+@import "~bootstrap/scss/functions";
+@import "./helpers/variables";
+@import "./helpers/utilities";
+
+@import "./front/homeView.scss";
+@import "./front/checkorder.scss";
+@import "./front/checkOutView.scss";
+@import "./front/menuView.scss";
+@import "./front/productsView.scss";
+
+@import "~bootstrap/scss/bootstrap";
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
