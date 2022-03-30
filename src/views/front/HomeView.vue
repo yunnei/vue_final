@@ -14,7 +14,7 @@
       <span class="border-bottom border-primary"> 新品上市 </span>
     </h3>
     <div
-      class="row gx-5 d-flex justify-content-center mb-2"
+      class="row d-flex justify-content-center mb-2"
       data-aos="fade-up"
       data-aos-duration="1000"
     >
