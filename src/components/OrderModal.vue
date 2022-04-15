@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" tabindex="-1" ref="modal">
+  <div class="modal order-modal" tabindex="-1" ref="modal">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header bg-dark">
@@ -13,16 +13,7 @@
         </div>
         <div class="modal-body row">
           <div class="col-4">
-            <div class="d-flex justify-content-between">
-              <h4>訂購人資料</h4>
-              <button
-                class="btn btn-outline-primary btn-sm"
-                type="botton"
-                @click="isEdit = true"
-              >
-                修改
-              </button>
-            </div>
+            <h4>訂購人資料</h4>
             <table class="table align-middle">
               <tbody>
                 <tr>
@@ -73,7 +64,16 @@
             </table>
           </div>
           <div class="col-8">
-            <h4>訂單內容</h4>
+            <div class="d-flex justify-content-between">
+              <h4>訂單內容</h4>
+              <button
+                class="btn btn-outline-dark btn-sm"
+                type="button"
+                @click="isEdit = true"
+              >
+                修改
+              </button>
+            </div>
             <table class="table align-middle">
               <tbody>
                 <tr>
@@ -123,7 +123,15 @@
                 </tr>
                 <tr>
                   <th>備註</th>
-                  <td>{{ orderTemp.message }}</td>
+                  <td>
+                    <textarea
+                      v-if="isEdit"
+                      v-model="orderTemp.message"
+                      rows="3"
+                      cols="30"
+                    />
+                    <span v-else>{{ orderTemp.message }}</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -134,6 +142,7 @@
             type="button"
             class="btn btn-outline-secondary"
             data-bs-dismiss="modal"
+            @click="isEdit = false"
           >
             取消
           </button>
@@ -165,6 +174,7 @@ export default {
   watch: {
     order() {
       this.orderTemp = this.order;
+      console.log(this.orderTemp);
     },
   },
   methods: {
@@ -178,3 +188,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.order-modal input,
+.order-modal textarea {
+  border: 1px solid #ced4da;
+  padding: 0.2rem 0.5rem;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <v-loading :active="isLoading" loader="dots" :z-index="1000"></v-loading>
+  <Loading :active="isLoading" loader="dots" :z-index="1000" />
   <div class="container">
     <div class="my-4">
       <h2 class="text-center my-4">
@@ -12,20 +12,25 @@
           :key="product.id"
           class="col-md-6 col-lg-3 mt-2"
         >
-          <div class="card border-white text-center h-100 shadow-sm">
+          <div class="card border-gray text-center h-100">
             <router-link class="image" :to="`/product/${product.id}`">
               <img
                 :src="product.imageUrl"
                 class="card-img-top"
                 :alt="product.title"
               />
-              <button class="btn btn-dark">更多細節</button>
+              <button class="btn btn-dark" type="button">更多細節</button>
             </router-link>
             <div
               class="card-body px-1 d-flex flex-column justify-content-between"
             >
               <h5 class="card-title">
-                <router-link class="text-dark" :to="`/product/${product.id}`">
+                <router-link
+                  class="text-dark"
+                  :to="{
+                    path: `/product/${product.id}`,
+                  }"
+                >
                   {{ product.title }}
                 </router-link>
               </h5>
@@ -55,6 +60,18 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="bg-secondary text-center">
+      <h5 class="fs-5 fw-bold mb-4 bg-dark text-white py-2 rounded-top">
+        配送須知 / 風險承擔
+      </h5>
+      <p class="lh-lg text-dark pb-4">
+        軟綿綿的豆腐乳於玻璃罐中很嬌弱，<br />
+        因運送時難免碰撞或嚴重搖晃，<br />
+        可能導致豆腐乳無法維持完整的型態<br />
+        並不影響風味及食用，無法因此退貨，<br />
+        介意者可親至我方門市選購。
+      </p>
     </div>
   </div>
 </template>

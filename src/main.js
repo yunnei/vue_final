@@ -39,16 +39,15 @@ defineRule("email", email);
 defineRule("max_value", max_value);
 defineRule("min_value", min_value);
 
+AOS.init();
+
 const app = createApp(App);
 app.config.globalProperties.$httpMessageState = $httpMessageState;
-app.component("vLoading", Loading);
+app.component("Loading", Loading);
 app.use(VueAxios, axios);
 app.use(CKEditor);
-app.component("VForm", Form);
-app.component("VField", Field);
+app.component("Form", Form);
+app.component("Field", Field);
 app.component("ErrorMessage", ErrorMessage);
 app.use(router);
-app.use(AOS);
 app.mount("#app");
-
-AOS.init();

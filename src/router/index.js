@@ -13,6 +13,9 @@ const routes = [
       {
         path: "menu",
         component: () => import("../views/front/MenuView.vue"),
+        meta: {
+          title: "本季菜單",
+        },
       },
       {
         path: "products",
@@ -41,7 +44,7 @@ const routes = [
     component: () => import("../views/dashboard/DashboardView.vue"),
     children: [
       {
-        path: "/admin",
+        path: "",
         component: () => import("../views/dashboard/AdminProducts.vue"),
       },
       {
@@ -53,6 +56,10 @@ const routes = [
         component: () => import("../views/dashboard/AdminCoupons.vue"),
       },
     ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    component: () => import("../views/front/NotFound.vue"),
   },
 ];
 

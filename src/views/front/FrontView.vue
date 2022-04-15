@@ -1,10 +1,10 @@
 <template>
   <div class="min-vh-100">
-    <front-navbar></front-navbar>
-    <toast-message></toast-message>
-    <router-view></router-view>
+    <FrontNavbar />
+    <ToastMessage />
+    <RouterView />
   </div>
-  <Footer></Footer>
+  <Footer />
 </template>
 
 <script>
@@ -17,6 +17,14 @@ export default {
     FrontNavbar,
     Footer,
     ToastMessage,
+  },
+  watch: {
+    $route() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <v-loading :active="isLoading" loader="dots" :z-index="1000"></v-loading>
+  <Loading :active="isLoading" loader="dots" :z-index="1000" />
   <div class="container py-4">
     <h2>產品列表</h2>
     <div class="d-flex justify-content-between pt-4">
@@ -85,21 +85,14 @@
         </tr>
       </tbody>
     </table>
-    <!-- 分頁 -->
-    <pagination :pagination="pagination" @get-data="getProducts"></pagination>
-    <!-- ProductModal -->
-    <product-modal
+    <Pagination :pagination="pagination" @get-data="getProducts" />
+    <ProductModal
       :product="productTemp"
       :is-new="isNew"
       @update-product="updateProduct"
       ref="productModal"
-    ></product-modal>
-    <!-- DelModal -->
-    <del-modal
-      :item="productTemp"
-      ref="delModal"
-      @del-item="delProduct"
-    ></del-modal>
+    />
+    <DelModal :item="productTemp" ref="delModal" @del-item="delProduct" />
   </div>
 </template>
 

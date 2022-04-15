@@ -1,41 +1,45 @@
 <template>
-  <v-loading :active="isLoading" loader="dots" :z-index="1000"></v-loading>
+  <Loading :active="isLoading" loader="dots" :z-index="1000" />
   <div class="container">
-    <!-- step -->
-    <div class="d-flex justify-content-center text-center pt-4">
-      <div class="step-1 d-flex flex-column align-items-center p-4">
-        <div class="step-num bg-dark text-white border border-dark border-3">
-          1
+    <div class="d-flex flex-column align-items-center">
+      <div class="d-flex justify-content-center text-center pt-4">
+        <div class="step-1 d-flex flex-column align-items-center p-4">
+          <div class="step-num bg-dark text-white border border-dark border-3">
+            1
+          </div>
+          <p class="text-muted mt-2">建立訂單</p>
         </div>
-        <p class="text-muted mt-2">建立訂單</p>
-      </div>
-      <div
-        class="d-flex flex-column align-items-center p-4"
-        :class="order.is_paid ? 'step-1' : 'step-2'"
-      >
         <div
-          class="step-num bg-dark text-white border border-3"
-          :class="order.is_paid ? 'border-dark' : 'border-secondary'"
+          class="d-flex flex-column align-items-center p-4"
+          :class="order.is_paid ? 'step-1' : 'step-2'"
         >
-          2
+          <div
+            class="step-num bg-dark text-white border border-3"
+            :class="order.is_paid ? 'border-dark' : 'border-secondary'"
+          >
+            2
+          </div>
+          <p class="text-muted mt-2">確認結帳</p>
         </div>
-        <p class="text-muted mt-2">確認結帳</p>
+        <div class="d-flex flex-column align-items-center p-4">
+          <div
+            class="step-num bg-secondary border border-secondary border-3"
+            :class="
+              order.is_paid ? 'bg-dark text-white' : 'bg-secondary text-dark'
+            "
+          >
+            3
+          </div>
+          <p class="text-muted mt-2">完成訂單</p>
+        </div>
       </div>
-      <div class="d-flex flex-column align-items-center p-4">
-        <div
-          class="step-num bg-secondary border border-secondary border-3"
-          :class="
-            order.is_paid ? 'bg-dark text-white' : 'bg-secondary text-dark'
-          "
-        >
-          3
-        </div>
-        <p class="text-muted mt-2">完成訂單</p>
+      <div v-if="order.is_paid" class="bg-light text-center w-75 py-4">
+        <p class="fs-4 mb-1"><i class="bi bi-check-all"></i> 交易成功</p>
+        <p>非常感謝您的支持！</p>
       </div>
     </div>
     <div class="row">
-      <!-- 確認訂單 -->
-      <div class="col-md-8 p-4">
+      <div class="col-md-8 mt-4">
         <div class="p-4">
           <h2 class="fs-4 mb-4">訂購內容</h2>
           <table class="table align-middle">
@@ -59,7 +63,7 @@
                   <img
                     :src="item.product.imageUrl"
                     :alt="item.product.title"
-                    style="width: 36%"
+                    class="w-36"
                   />
                   <div class="ms-3">
                     <div class="mb-2">{{ item.product.title }}</div>
@@ -90,8 +94,7 @@
           </p>
         </div>
       </div>
-      <!-- 資料確認 -->
-      <div class="col-md-4 my-md-4 p-4 bg-secondary shadow-sm my-4">
+      <div class="col-md-4 p-4 bg-secondary my-4">
         <h2 class="fs-4 mb-3">訂單資訊</h2>
         <ul class="list-unstyled mb-4">
           <li class="row mb-1">
@@ -142,14 +145,18 @@
           </button>
         </template>
         <template v-else>
-          <button
-            class="btn btn-dark w-100"
-            type="button"
-            @click="payOrder"
-            disabled
-          >
-            非常感謝您的支持！
-          </button>
+          <div class="d-flex">
+            <a
+              class="btn btn-outline-dark w-100 me-2"
+              type="button"
+              href="#/menu"
+            >
+              <i class="bi bi-arrow-left"></i> 查看菜單
+            </a>
+            <a class="btn btn-dark w-100 ms-2" type="button" href="#/products">
+              繼續選購 <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
         </template>
       </div>
     </div>

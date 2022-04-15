@@ -14,11 +14,11 @@
             aria-label="Close"
           ></button>
         </div>
-        <v-form v-slot="{ errors }" @submit="updateCoupon">
+        <Form v-slot="{ errors }" @submit="updateCoupon">
           <div class="modal-body">
             <div class="mb-3">
               <label for="title" class="form-label">名稱</label>
-              <v-field
+              <Field
                 type="text"
                 class="form-control"
                 id="title"
@@ -27,7 +27,7 @@
                 name="優惠券名稱"
                 :class="{ 'is-invalid': errors['優惠券名稱'] }"
                 rules="required"
-              ></v-field>
+              ></Field>
               <error-message
                 name="優惠券名稱"
                 class="invalid-feedback"
@@ -35,7 +35,7 @@
             </div>
             <div class="mb-3">
               <label for="code" class="form-label">優惠碼</label>
-              <v-field
+              <Field
                 type="text"
                 class="form-control"
                 id="code"
@@ -44,7 +44,7 @@
                 name="優惠碼"
                 :class="{ 'is-invalid': errors['優惠碼'] }"
                 rules="required"
-              ></v-field>
+              ></Field>
               <error-message
                 name="優惠碼"
                 class="invalid-feedback"
@@ -52,7 +52,7 @@
             </div>
             <div class="mb-3">
               <label for="percent" class="form-label">折扣</label>
-              <v-field
+              <Field
                 type="number"
                 min="0"
                 max="100"
@@ -63,7 +63,7 @@
                 name="折扣百分比"
                 :class="{ 'is-invalid': errors['折扣百分比'] }"
                 rules="required|min_value:0|max_value:100"
-              ></v-field>
+              ></Field>
               <error-message
                 name="折扣百分比"
                 class="invalid-feedback"
@@ -111,7 +111,7 @@
               <span v-else>儲存</span>
             </button>
           </div>
-        </v-form>
+        </Form>
       </div>
     </div>
   </div>

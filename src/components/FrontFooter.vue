@@ -13,7 +13,8 @@
         <p>
           <span class="fw-bold">島入冰店</span><br />
           日式刨冰｜飲品｜甜點 專門店<br />
-          電話：0958-558-137<br />
+          電話：<a class="text-muted" href="tel:0958-558-137">0958-558-137</a
+          ><br />
           營業時間：每週肆伍陸日 12：00 - 18：00<br />
           地址：700 台南市中西區赤崁東街 15 巷 2 號<br />
           ＊詳細營業情況請見臉書公告為準＊
@@ -23,16 +24,20 @@
         <a
           class="text-muted mx-2"
           href="https://www.instagram.com/daoru.iceshop/"
-          ><i class="bi bi-instagram"></i
+        >
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a class="text-muted mx-2" href="https://www.facebook.com/daoru.ice">
+          <i class="bi bi-facebook"> </i
         ></a>
-        <a class="text-muted mx-2" href="https://www.facebook.com/daoru.ice"
-          ><i class="bi bi-facebook"></i
-        ></a>
-        <a class="text-muted mx-2" href=""><i class="bi bi-envelope"></i></a>
+        <a class="text-muted mx-2" href="mailto:daoru2009@gmail.com">
+          <i class="bi bi-envelope"></i>
+        </a>
       </div>
     </div>
   </footer>
   <div class="d-flex text-primary bg-dark justify-content-center">
+    <span class="me-4">本網站僅供個人作品使用，無任何商業用途</span>
     <router-link to="/admin">後台</router-link>｜
     <router-link to="/login">登入</router-link>
   </div>

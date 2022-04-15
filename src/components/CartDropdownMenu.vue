@@ -4,6 +4,8 @@
       type="button position-relative p-2"
       data-bs-toggle="dropdown"
       data-bs-auto-close="outside"
+      ref="cartDropdown"
+      @click="toggleCartDropdown"
     >
       <i class="bi bi-cart3 text-dark fs-4"></i>
       <span
@@ -14,19 +16,19 @@
         <span class="visually-hidden">unread messages</span>
       </span>
     </a>
-    <div class="dropdown-menu dropdown-menu-end p-2 overflow-auto">
+    <div class="dropdown-menu p-2 overflow-auto">
       <template v-if="cart.carts.length">
         <p class="text-center text-muted">— 已加入商品 —</p>
         <ul class="list-group list-group-flush">
           <li
             v-for="item in cart.carts"
             :key="item.id"
-            class="list-group-item d-flex align-items-center justify-content-between"
+            class="list-group-item d-flex align-items-center justify-content-between px-1"
           >
             <img
               :src="item.product.imageUrl"
               :alt="item.product.title"
-              style="width: 28%"
+              class="w-25"
             />
             <div class="d-flex flex-column justify-conetent-center mx-2">
               <span class="mb-1">{{ item.product.title }}</span>
@@ -42,10 +44,9 @@
                 </button>
                 <input
                   type="text"
-                  class="form-control form-control-sm text-center border-dark"
+                  class="form-control form-control-sm text-center border-dark w-25"
                   v-model.number="item.qty"
                   @change="modifyQty('change', item)"
-                  style="width: 24%"
                 />
                 <button
                   class="btn btn-sm btn-outline-dark"
@@ -78,11 +79,8 @@
           >
             前往結帳
           </button>
-          <a class="text-muted me-2" href="#" @click.prevent="delCart">
-            <div v-if="delAllLoading" class="spinner-border spinner-border-sm">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <span v-else>清空購物車</span>
+          <a class="text-muted me-2" href="#" @click.prevent="openDelModal">
+            清空購物車
           </a>
         </div>
       </template>
@@ -93,13 +91,20 @@
         </a>
       </template>
     </div>
+    <DelModal :item="{ msg: '全部項目' }" @del-item="delCart" ref="delModal" />
   </div>
 </template>
 
 <script>
 import emitter from "@/utils/emitter";
+import Dropdown from "bootstrap/js/dist/dropdown";
+import Modal from "bootstrap/js/dist/modal";
+import DelModal from "@/components/DelModal.vue";
 
 export default {
+  components: {
+    DelModal,
+  },
   data() {
     return {
       cart: {
@@ -107,7 +112,8 @@ export default {
       },
       btnLoading: false,
       delbtnLoading: false,
-      delAllLoading: false,
+      cartDropdown: {},
+      delModal: {},
     };
   },
   methods: {
@@ -123,15 +129,14 @@ export default {
         });
     },
     delCart() {
+      this.delModal.hide();
       let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`;
-      this.delAllLoading = true;
       this.$http
         .delete(url)
         .then((res) => {
           this.$httpMessageState(res, `清空購物車`);
           this.getCart();
           emitter.emit("get-check-order");
-          this.delAllLoading = false;
         })
         .catch((error) => {
           this.$httpMessageState(error.response, error.response.data.message);
@@ -186,8 +191,19 @@ export default {
           this.$httpMessageState(error.response, error.response.data.message);
         });
     },
+    toggleCartDropdown() {
+      this.cartDropdown.toggle();
+    },
+    hideCartDropdown() {
+      this.cartDropdown.hide();
+    },
     checkout() {
       this.$router.push("/checkorder");
+      this.hideCartDropdown();
+    },
+    openDelModal() {
+      this.delModal.show();
+      this.hideCartDropdown();
     },
   },
   mounted() {
@@ -195,6 +211,17 @@ export default {
     emitter.on("get-cart", () => {
       this.getCart();
     });
+    this.cartDropdown = new Dropdown(this.$refs.cartDropdown);
+    this.delModal = new Modal(this.$refs.delModal.modal);
   },
 };
 </script>
+
+<style>
+.dropdown .dropdown-menu {
+  min-width: 360px;
+  max-height: 80vh;
+  right: -18px;
+  left: auto;
+}
+</style>

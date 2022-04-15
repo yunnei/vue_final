@@ -392,7 +392,10 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null) 
 
 // scss-docs-start position-map
 $position-values: (
+  18: 18px,
   0: 0,
+  5: 5%,
+  10: 10%,
   50: 50%,
   100: 100%
 ) !default;
@@ -748,7 +751,7 @@ $input-btn-font-family:       null !default;
 $input-btn-font-size:         $font-size-base !default;
 $input-btn-line-height:       $line-height-base !default;
 
-$input-btn-focus-width:         .25rem !default;
+$input-btn-focus-width:         1px; // .25rem !default;
 $input-btn-focus-color-opacity: .25 !default;
 $input-btn-focus-color:         rgba($component-active-bg, $input-btn-focus-color-opacity) !default;
 $input-btn-focus-blur:          0 !default;
@@ -1071,8 +1074,8 @@ $zindex-sticky:                     1020 !default;
 $zindex-fixed:                      1030 !default;
 $zindex-offcanvas-backdrop:         1040 !default;
 $zindex-offcanvas:                  1045 !default;
-$zindex-modal-backdrop:             1050 !default;
-$zindex-modal:                      1055 !default;
+$zindex-modal-backdrop:             1000; // 1050 !default;
+$zindex-modal:                      1060; // 1055 !default;
 $zindex-popover:                    1070 !default;
 $zindex-tooltip:                    1080 !default;
 // scss-docs-end zindex-stack

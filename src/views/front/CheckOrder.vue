@@ -1,8 +1,7 @@
 <template>
-  <v-loading :active="isLoading" loader="dots" :z-index="1000"></v-loading>
+  <Loading :active="isLoading" loader="dots" :z-index="1000" />
   <div class="container">
     <template v-if="cart.carts.length">
-      <!-- step -->
       <div class="d-flex justify-content-center text-center pt-4">
         <div class="step d-flex flex-column align-items-center p-4">
           <div
@@ -30,7 +29,6 @@
         </div>
       </div>
       <div class="row">
-        <!-- 確認訂單 -->
         <div class="col-xl-8 p-4">
           <div class="p-4">
             <h2 class="fs-4 mb-4">確認訂單內容</h2>
@@ -55,7 +53,7 @@
                     <img
                       :src="item.product.imageUrl"
                       :alt="item.product.title"
-                      style="width: 36%"
+                      class="w-36"
                     />
                     <div class="ms-3">
                       <div class="mb-2">{{ item.product.title }}</div>
@@ -73,10 +71,9 @@
                           </button>
                           <input
                             type="text"
-                            class="form-control form-control-sm text-center border-dark"
+                            class="form-control form-control-sm text-center border-dark w-25"
                             v-model.number="item.qty"
                             @change="modifyQty('change', item)"
-                            style="width: 24%"
                           />
                           <button
                             class="btn btn-sm btn-outline-dark"
@@ -164,14 +161,15 @@
             </span>
           </div>
         </div>
-        <!-- 填寫資料 -->
-        <div class="col-xl-4 my-4 p-4 bg-secondary shadow-sm">
+        <div class="col-xl-4 my-4 p-4 bg-secondary">
           <div class="p-xl-0 p-4">
             <h2 class="fs-4 mb-4">填寫收件人資料</h2>
-            <v-form v-slot="{ errors }" @submit="createOrder">
+            <Form v-slot="{ errors }" @submit="createOrder">
               <div class="mb-3">
-                <label for="name" class="form-label">姓名</label>
-                <v-field
+                <label for="name" class="form-label">
+                  姓名 <span class="text-danger">*</span>
+                </label>
+                <Field
                   type="text"
                   class="form-control"
                   id="name"
@@ -180,49 +178,55 @@
                   name="姓名"
                   :class="{ 'is-invalid': errors['姓名'] }"
                   rules="required"
-                ></v-field>
+                ></Field>
                 <error-message
                   name="姓名"
                   class="invalid-feedback"
                 ></error-message>
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <v-field
+                <label for="email" class="form-label">
+                  Email <span class="text-danger">*</span>
+                </label>
+                <Field
                   type="email"
                   class="form-control"
                   id="email"
-                  placeholder="請輸入 Email"
+                  placeholder="example@email.com"
                   v-model="form.user.email"
                   name="email"
                   :class="{ 'is-invalid': errors['email'] }"
                   rules="email|required"
-                ></v-field>
+                ></Field>
                 <error-message
                   name="email"
                   class="invalid-feedback"
                 ></error-message>
               </div>
               <div class="mb-3">
-                <label for="tel" class="form-label">電話</label>
-                <v-field
+                <label for="tel" class="form-label">
+                  電話 <span class="text-danger">*</span>
+                </label>
+                <Field
                   type="text"
                   class="form-control"
                   id="tel"
-                  placeholder="請輸入電話"
+                  placeholder="09xxxxxxxx"
                   v-model="form.user.tel"
                   name="電話"
                   :class="{ 'is-invalid': errors['電話'] }"
-                  rules="required|min:9|max:10"
-                ></v-field>
+                  :rules="isPhone"
+                ></Field>
                 <error-message
                   name="電話"
                   class="invalid-feedback"
                 ></error-message>
               </div>
               <div class="mb-3">
-                <label for="address" class="form-label">地址</label>
-                <v-field
+                <label for="address" class="form-label">
+                  地址 <span class="text-danger">*</span>
+                </label>
+                <Field
                   type="text"
                   class="form-control"
                   id="address"
@@ -231,7 +235,7 @@
                   name="地址"
                   :class="{ 'is-invalid': errors['地址'] }"
                   rules="required"
-                ></v-field>
+                ></Field>
                 <error-message
                   name="地址"
                   class="invalid-feedback"
@@ -257,7 +261,7 @@
                   送出訂單
                 </button>
               </div>
-            </v-form>
+            </Form>
           </div>
         </div>
       </div>
@@ -274,18 +278,18 @@
         </a>
       </div>
     </template>
-    <delModal :item="itemTemp" @del-item="delItem" ref="delModal"></delModal>
+    <DelModal :item="itemTemp" @del-item="delItem" ref="delModal" />
   </div>
 </template>
 
 <script>
 import emitter from "@/utils/emitter";
 import Modal from "bootstrap/js/dist/modal";
-import delModal from "@/components/DelModal.vue";
+import DelModal from "@/components/DelModal.vue";
 
 export default {
   components: {
-    delModal,
+    DelModal,
   },
   data() {
     return {
@@ -401,6 +405,10 @@ export default {
         .catch((error) => {
           this.$httpMessageState(error.response, error.response.data.message);
         });
+    },
+    isPhone(value) {
+      const phoneNumber = /^(09)[0-9]{8}$/;
+      return phoneNumber.test(value) ? true : "電話 須為有效的電話號碼";
     },
   },
   mounted() {

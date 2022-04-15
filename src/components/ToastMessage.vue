@@ -1,5 +1,5 @@
 <template>
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+  <div class="position-fixed bottom-0 end-0 toast-message">
     <div
       v-for="(message, key) in messages"
       :key="key"
@@ -58,3 +58,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.toast-message {
+  z-index: 1100;
+}
+</style>

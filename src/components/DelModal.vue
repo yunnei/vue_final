@@ -13,12 +13,15 @@
         </div>
         <div class="modal-body text-center">
           是否刪除
-          <strong v-if="item.title" class="text-danger">{{
-            item.title
-          }}</strong>
-          <strong v-else-if="item.product" class="text-danger">{{
-            item.product.title
-          }}</strong>
+          <strong v-if="item.title" class="text-danger">
+            {{ item.title }}
+          </strong>
+          <strong v-else-if="item.product" class="text-danger">
+            {{ item.product.title }}
+          </strong>
+          <strong v-else-if="item.msg" class="text-danger">
+            {{ item.msg }}
+          </strong>
           <strong v-else class="text-danger">{{ item.id }}</strong>
           ?
           <br />

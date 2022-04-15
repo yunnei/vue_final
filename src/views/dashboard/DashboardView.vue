@@ -41,8 +41,8 @@
       </div>
     </div>
   </nav>
-  <toast-message></toast-message>
-  <router-view v-if="loginStatus"></router-view>
+  <ToastMessage />
+  <RouterView v-if="loginStatus" />
 </template>
 
 <script>

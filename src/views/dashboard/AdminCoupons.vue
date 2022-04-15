@@ -1,5 +1,5 @@
 <template>
-  <v-loading :active="isLoading" loader="dots" :z-index="1000"></v-loading>
+  <Loading :active="isLoading" loader="dots" :z-index="1000" />
   <div class="container py-4">
     <h2>優惠券</h2>
     <div class="text-end">
@@ -61,19 +61,14 @@
         </tr>
       </tbody>
     </table>
-    <pagination :pagination="pagination" @get-data="getCoupons"></pagination>
-    <!-- CouponModal -->
-    <coupon-modal
+    <Pagination :pagination="pagination" @get-data="getCoupons" />
+    <CouponModal
       :coupon="couponTemp"
       :is-new="isNew"
       @update-coupon="updateCoupon"
       ref="couponModal"
-    ></coupon-modal>
-    <del-modal
-      :item="couponTemp"
-      @del-item="delCoupon"
-      ref="delModal"
-    ></del-modal>
+    />
+    <DelModal :item="couponTemp" @del-item="delCoupon" ref="delModal" />
   </div>
 </template>
 

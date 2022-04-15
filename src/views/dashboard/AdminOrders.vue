@@ -1,5 +1,5 @@
 <template>
-  <v-loading :active="isLoading" loader="dots" :z-index="1060"></v-loading>
+  <Loading :active="isLoading" loader="dots" :z-index="1060" />
   <div class="container py-4">
     <h2>訂單管理</h2>
     <table class="table table-hover mt-3 align-middle">
@@ -57,19 +57,9 @@
         </tr>
       </tbody>
     </table>
-    <pagination :pagination="pagination" @get-data="getOrders"></pagination>
-    <!-- OrderModal -->
-    <order-modal
-      :order="orderTemp"
-      ref="orderModal"
-      @update-paid="updatePaid"
-    ></order-modal>
-    <!-- DelModal -->
-    <del-modal
-      :item="orderTemp"
-      ref="delModal"
-      @del-item="delOrder"
-    ></del-modal>
+    <Pagination :pagination="pagination" @get-data="getOrders" />
+    <OrderModal :order="orderTemp" ref="orderModal" @update-paid="updatePaid" />
+    <DelModal :item="orderTemp" ref="delModal" @del-item="delOrder" />
   </div>
 </template>
 
