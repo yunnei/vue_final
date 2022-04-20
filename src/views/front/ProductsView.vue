@@ -1,5 +1,7 @@
 <template>
-  <Loading :active="isLoading" loader="dots" :z-index="1000" />
+  <Loading :active="isLoading" :opacity="0.8" :z-index="1000">
+    <Loader></Loader>
+  </Loading>
   <div class="container">
     <div class="my-4">
       <h2 class="text-center my-4">
@@ -78,8 +80,12 @@
 
 <script>
 import emitter from "@/utils/emitter";
+import Loader from "@/components/LoadingComponents.vue";
 
 export default {
+  components: {
+    Loader,
+  },
   data() {
     return {
       products: [],

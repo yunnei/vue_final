@@ -1,5 +1,8 @@
 <template>
-  <Loading :active="isLoading" loader="dots" :z-index="1000" />
+  <Loading :active="isLoading" :opacity="0.8" :z-index="1000">
+    <Loader></Loader>
+  </Loading>
+  <Loading />
   <div class="container">
     <div class="my-4">
       <h2 class="text-center my-4">
@@ -20,23 +23,25 @@
           :key="product.id"
           class="col card border-0 menu-card"
         >
-          <img :src="product.imageUrl" class="card-img-top" alt="" />
-          <div class="menu-card-body">
-            <p class="fs-4 fw-bold card-text m-0">《 {{ product.title }} 》</p>
-            <p class="ps-3 menu-card-content mb-1">{{ product.content }}</p>
-            <p class="fs-5 ps-3 mb-0 menu-card-price">
-              <span v-if="product.price_large">
-                <span class="me-3">大 ${{ product.price_large }}</span>
-                小
-              </span>
-              ${{ product.price }}
-            </p>
-            <router-link :to="`/product/${product.id}`">
+          <router-link :to="`/product/${product.id}`">
+            <img :src="product.imageUrl" class="card-img-top" alt="" />
+            <div class="menu-card-body">
+              <p class="fs-4 fw-bold card-text m-0">
+                《 {{ product.title }} 》
+              </p>
+              <p class="ps-3 menu-card-content mb-1">{{ product.content }}</p>
+              <p class="fs-5 ps-3 mb-0 menu-card-price">
+                <span v-if="product.price_large">
+                  <span class="me-3">大 ${{ product.price_large }}</span>
+                  小
+                </span>
+                ${{ product.price }}
+              </p>
               <button class="btn btn-sm btn-outline-dark" type="button">
                 更多細節
               </button>
-            </router-link>
-          </div>
+            </div>
+          </router-link>
         </div>
       </div>
       <div class="row row-cols-md-2 row-cols-1 gy-4 mb-5">
@@ -99,14 +104,18 @@
 </template>
 
 <script>
+import Loader from "@/components/LoadingComponents.vue";
 export default {
+  components: {
+    Loader,
+  },
   data() {
     return {
       iceProducts: [],
       baverageProducts: [],
       dessertProducts: [],
       categoryMsg: "",
-      isLoading: true,
+      isLoading: false,
     };
   },
   methods: {
@@ -141,59 +150,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.menu-category {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid #70502a;
-  margin-bottom: 1rem;
-  width: 300px;
-}
-.menu-card-body {
-  position: absolute;
-  left: 0.2rem;
-  bottom: -0.5rem;
-  background: rgba(86, 181, 194, 0.7);
-  color: #fff;
-  width: 68%;
-  height: 20%;
-  padding: 0.2rem;
-  transition: 0.4s linear;
-  overflow: hidden;
-}
-.menu-card-content {
-  display: none;
-  margin-top: 1rem;
-}
-.menu-card .btn {
-  display: none;
-  position: absolute;
-  bottom: -2rem;
-}
-.menu-card:hover {
-  cursor: pointer;
-}
-.menu-card:hover .menu-card-content {
-  display: block;
-  transition: 0.4s linear;
-}
-.menu-card:hover .menu-card-body {
-  background: rgb(236, 230, 219, 0.9);
-  color: #70502a;
-  width: 94%;
-  height: 52%;
-  transition: 0.4s linear;
-}
-.menu-card:hover .menu-card-price {
-  font-weight: bold;
-  position: absolute;
-  bottom: 0.5rem;
-}
-.menu-card:hover .btn {
-  display: block;
-  bottom: 0.5rem;
-  right: 1rem;
-}
-</style>

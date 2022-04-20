@@ -25,14 +25,19 @@
             <router-link to="/admin" class="nav-link">產品列表</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/admin/orders" class="nav-link"
-              >訂單管理</router-link
-            >
+            <router-link to="/admin/orders" class="nav-link">
+              訂單管理
+            </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/admin/coupons" class="nav-link"
-              >優惠券</router-link
-            >
+            <router-link to="/admin/coupons" class="nav-link">
+              優惠券
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/admin/articles" class="nav-link">
+              貼文
+            </router-link>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link" @click.prevent="logout">登出</a>

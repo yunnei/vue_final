@@ -1,5 +1,7 @@
 <template>
-  <Loading :active="isLoading" loader="dots" :z-index="1000" />
+  <Loading :active="isLoading" :opacity="0.8" :z-index="1000">
+    <Loader></Loader>
+  </Loading>
   <div class="container">
     <template v-if="cart.carts.length">
       <div class="d-flex justify-content-center text-center pt-4">
@@ -286,10 +288,12 @@
 import emitter from "@/utils/emitter";
 import Modal from "bootstrap/js/dist/modal";
 import DelModal from "@/components/DelModal.vue";
+import Loader from "@/components/LoadingComponents.vue";
 
 export default {
   components: {
     DelModal,
+    Loader,
   },
   data() {
     return {

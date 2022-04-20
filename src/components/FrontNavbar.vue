@@ -26,6 +26,9 @@
           <li class="nav-item" @click="hideNavbarMenu">
             <router-link to="/products" class="nav-link">宅配專區</router-link>
           </li>
+          <li class="nav-item" @click="hideNavbarMenu">
+            <router-link to="/news" class="nav-link">最新消息</router-link>
+          </li>
         </ul>
       </div>
       <!-- 購物車 -->

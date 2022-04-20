@@ -77,12 +77,17 @@
           <img class="mb-2" :src="product.imageUrl" />
           <button class="btn btn-dark btn-sm" type="button">更多細節</button>
           <p class="fs-5 fw-bold mb-2">《 {{ product.title }} 》</p>
-          <p>
-            <span v-if="product.price_large">
-              <span class="me-3">大 ${{ product.price_large }}</span>
-              小
-            </span>
-            ${{ product.price }}
+          <p
+            v-if="product.price === product.origin_price"
+            class="text-dark fs-4"
+          >
+            $ {{ product.price }}
+          </p>
+          <p v-else class="text-danger fw-bold fs-4">
+            $ {{ product.price }}
+            <del class="text-muted fw-normal fs-6">
+              $ {{ product.origin_price }}
+            </del>
           </p>
         </router-link>
       </swiper-slide>

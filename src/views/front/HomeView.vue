@@ -52,7 +52,7 @@
           帶給你片刻的 Q 彈驚喜，<br />
           忍不住一口接一口！<br />
         </p>
-        <div class="text-end">
+        <div class="new-arival-btn">
           <button
             class="btn btn-outline-dark btn-sm"
             type="button"

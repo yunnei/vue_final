@@ -3,6 +3,7 @@ import "bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
 import VueAxios from "vue-axios";
+// import Loading from "@/components/LoadingComponents.vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import CKEditor from "@ckeditor/ckeditor5-vue";

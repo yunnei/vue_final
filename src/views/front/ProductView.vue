@@ -1,5 +1,7 @@
 <template>
-  <Loading :active="isLoading" loader="dots" :z-index="1000" />
+  <Loading :active="isLoading" :opacity="0.8" :z-index="1000">
+    <Loader></Loader>
+  </Loading>
   <div class="product container">
     <div class="row d-flex justify-content-center">
       <div class="col-lg-4 col-md-6 my-4 mx-lg-2 text-center">
@@ -124,11 +126,13 @@
 import emitter from "@/utils/emitter";
 import ProductSwiper from "@/components/ProductSwiper.vue";
 import AutoSwiper from "@/components/AutoSwiper.vue";
+import Loader from "@/components/LoadingComponents.vue";
 
 export default {
   components: {
     ProductSwiper,
     AutoSwiper,
+    Loader,
   },
   data() {
     return {
@@ -194,7 +198,6 @@ export default {
       this.categoryProducts = this.products.filter(
         (item) => item.category === category && item.id != id
       );
-      console.log(this.categoryProducts);
     },
   },
   mounted() {
@@ -202,21 +205,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.product p {
-  margin-bottom: 0.25rem;
-}
-.product-content-title {
-  position: relative;
-}
-.product-content-title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0.2rem;
-  height: 0.4rem;
-  width: 100%;
-  background: rgba(86, 181, 194, 0.2);
-}
-</style>

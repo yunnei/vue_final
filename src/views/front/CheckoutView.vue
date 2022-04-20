@@ -1,5 +1,7 @@
 <template>
-  <Loading :active="isLoading" loader="dots" :z-index="1000" />
+  <Loading :active="isLoading" :opacity="0.8" :z-index="1000">
+    <Loader></Loader>
+  </Loading>
   <div class="container">
     <div class="d-flex flex-column align-items-center">
       <div class="d-flex justify-content-center text-center pt-4">
@@ -164,7 +166,12 @@
 </template>
 
 <script>
+import Loader from "@/components/LoadingComponents.vue";
+
 export default {
+  components: {
+    Loader,
+  },
   data() {
     return {
       order: {

@@ -5,3 +5,56 @@
   background: rgb(205, 233, 237, 0.2);
   cursor: pointer;
 }
+.menu-category {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid #70502a;
+  margin-bottom: 1rem;
+  width: 300px;
+}
+.menu-card-body {
+  position: absolute;
+  left: 0.2rem;
+  bottom: -0.5rem;
+  background: rgba(86, 181, 194, 0.7);
+  color: #fff;
+  width: 68%;
+  height: 20%;
+  padding: 0.2rem;
+  transition: 0.2s linear;
+  overflow: hidden;
+}
+.menu-card-content {
+  display: none;
+  margin-top: 1rem;
+}
+.menu-card .btn {
+  display: none;
+  position: absolute;
+  bottom: -2rem;
+}
+.menu-card:hover {
+  cursor: pointer;
+}
+.menu-card:hover .menu-card-content {
+  display: block;
+  transition: 0.2s linear;
+}
+.menu-card:hover .menu-card-body {
+  background: rgb(236, 230, 219, 0.9);
+  color: #70502a;
+  width: 94%;
+  height: 52%;
+  transition: 0.2s linear;
+}
+.menu-card:hover .menu-card-price {
+  font-weight: bold;
+  position: absolute;
+  bottom: 0.5rem;
+}
+.menu-card:hover .btn {
+  display: block;
+  bottom: 0.5rem;
+  right: 1rem;
+}

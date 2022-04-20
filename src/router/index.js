@@ -13,9 +13,6 @@ const routes = [
       {
         path: "menu",
         component: () => import("../views/front/MenuView.vue"),
-        meta: {
-          title: "本季菜單",
-        },
       },
       {
         path: "products",
@@ -32,6 +29,14 @@ const routes = [
       {
         path: "checkout/:id",
         component: () => import("../views/front/CheckoutView.vue"),
+      },
+      {
+        path: "news",
+        component: () => import("../views/front/NewsView.vue"),
+      },
+      {
+        path: "news/:id",
+        component: () => import("../views/front/TheNews.vue"),
       },
     ],
   },
@@ -54,6 +59,10 @@ const routes = [
       {
         path: "coupons",
         component: () => import("../views/dashboard/AdminCoupons.vue"),
+      },
+      {
+        path: "articles",
+        component: () => import("../views/dashboard/AdminArticles.vue"),
       },
     ],
   },

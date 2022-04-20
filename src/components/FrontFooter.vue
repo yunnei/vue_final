@@ -36,9 +36,13 @@
       </div>
     </div>
   </footer>
-  <div class="d-flex text-primary bg-dark justify-content-center">
-    <span class="me-4">本網站僅供個人作品使用，無任何商業用途</span>
-    <router-link to="/admin">後台</router-link>｜
-    <router-link to="/login">登入</router-link>
+  <div
+    class="d-flex flex-column text-primary bg-dark justify-content-center align-items-center p-2"
+  >
+    <span class="me-4">
+      僅個人作品使用，無任何商業用途 |
+      <router-link to="/admin">後台</router-link>
+    </span>
+    <div>Copyright © 2022 島入冰店.Made by Yunei.</div>
   </div>
 </template>

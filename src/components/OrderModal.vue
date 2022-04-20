@@ -174,7 +174,6 @@ export default {
   watch: {
     order() {
       this.orderTemp = this.order;
-      console.log(this.orderTemp);
     },
   },
   methods: {
