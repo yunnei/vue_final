@@ -86,12 +86,7 @@
       </template>
       <template v-else>
         <p class="text-center text-muted">— 空空如也 —</p>
-        <a
-          href="#/products"
-          class="btn btn-dark mb-2 w-100"
-          type="button"
-          @click="hideCartDropdown"
-        >
+        <a href="#/products" class="btn btn-dark mb-2 w-100" type="button">
           前往購物
         </a>
       </template>

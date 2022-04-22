@@ -7,7 +7,9 @@
     <div class="my-4">
       <h2 class="text-center my-4">
         本季菜單<br />
-        <span class="text-primary fs-6">— 歡迎來店品嚐 —</span>
+        <span class="text-primary fs-6">
+          — 菜單持續更新，依島入冰店現場為主 —
+        </span>
       </h2>
       <div class="fs-3 menu-category">
         <img

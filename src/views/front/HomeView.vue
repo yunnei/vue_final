@@ -8,6 +8,7 @@
           擁有法式細膩靈魂<br />
           翻新味蕾感受的日式刨冰<br />
         </p>
+        <span class="text-primary mb-0">*此網站非島入冰店官方網站</span>
       </div>
       <div class="text-end">
         <button
